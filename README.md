@@ -1,5 +1,6 @@
-#  Reusable Flask Starter Project API
-Flask wrapper REST Api project. This project is aimed at creating a flask structure that is reusable for any flask project. All you have to do is just clone/fork, customise db details and start building your API in the less than 5minutes. This project uses the following technologies: 
+#  Internet Test Bot API
+This is an API for an internet test chatbot on dialogflow.
+This project uses the following technologies: 
 
 1. `Flask`
 2. `Swagger` 
