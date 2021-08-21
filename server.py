@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify
 from flasgger import Swagger
 from flask_cors import CORS
+from flask_apscheduler import APScheduler
+from app.helpers import ooni_request
 
 from app.routes import api
 from app.models import db
@@ -63,7 +65,21 @@ def create_app(config_name):
         response.status_code = 500
         return response
 
+    # call scheduler
+    scheduler = APScheduler()
+    scheduler.api_enabled = True
+    scheduler.add_job(id = 'Scheduled Task', func=scheduleTask, trigger="interval", seconds=180)
+    print(scheduler.get_job(id = 'Scheduled Task'))
+    scheduler.init_app(app)
+    scheduler.start()
+
     return app
+
+# create schuler function
+def scheduleTask():
+    print("This test runs every 180 seconds")
+    ooni_request.get_data()
+    print("This test ends here ")
 
 
 # create app instance using running config
