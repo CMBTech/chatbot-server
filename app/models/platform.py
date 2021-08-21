@@ -9,5 +9,5 @@ class Platform(ModelMixin):
     url = db.Column(db.String(256), nullable=True)
     status_date = db.Column(db.DateTime, default=db.func.current_timestamp())
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
-    status = db.Column(db.Boolean, nullable=True, default=null)
+    status = db.Column(db.Boolean, nullable=True)
 

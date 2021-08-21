@@ -1,5 +1,6 @@
 from app.models import db
 from app.models.root_model import ModelMixin
+from app.models.platform import Platform
 
 class Category(ModelMixin):
     __tablename__ = 'category'
