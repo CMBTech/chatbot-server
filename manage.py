@@ -4,7 +4,8 @@ from app.models import db
 from server import app
 
 # import models
-# from app.models.first import First
+from app.models.platform import Platform
+from app.models.category import Category
 
 # register app and db with migration class
 migrate = Migrate(app, db)
