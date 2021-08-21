@@ -12,6 +12,6 @@ class PlatformSchema(Schema):
             ),
         ])
     url = fields.String()
-    status_date = fields.Date()
+    status_date = fields.String()
     category_id = fields.Integer()
     status = fields.Bool()

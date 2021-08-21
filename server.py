@@ -68,7 +68,7 @@ def create_app(config_name):
     # call scheduler
     scheduler = APScheduler()
     scheduler.api_enabled = True
-    scheduler.add_job(id = 'Scheduled Task', func=scheduleTask, trigger="interval", seconds=180)
+    scheduler.add_job(id = 'Scheduled Task', func=scheduleTask, trigger="interval", seconds=20)
     print(scheduler.get_job(id = 'Scheduled Task'))
     scheduler.init_app(app)
     scheduler.start()
