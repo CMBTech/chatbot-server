@@ -42,3 +42,51 @@ paths:
                     description: "Bad request"
                 500:
                     description: "Internal Server Error"
+
+
+    "/platforms":
+        post:
+            tags:
+                - platforms
+            consumes:
+                - application/json
+            parameters:
+                - in: body
+                  name: category
+                  schema:
+                    type: object
+                    required:
+                        - name
+                        - category_id
+                        - url
+                    properties:
+                        name:
+                            type: string
+                        url:
+                            type: string
+                        category_id:
+                            type: number                       
+            produces:
+                - application/json
+            responses:
+                201:
+                    description: "Success"
+                400:
+                    description: "Bad request"
+                500:
+                    description: "Internal Server Error"
+
+        get:
+            tags:
+                - platforms
+            consumes:
+                - application/json
+            produces:
+                - application/json
+            responses:
+                200:
+                    description: "Success"
+                400:
+                    description: "Bad request"
+                500:
+                    description: "Internal Server Error"
