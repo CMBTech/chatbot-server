@@ -106,3 +106,23 @@ paths:
                     description: "Bad request"
                 500:
                     description: "Internal Server Error"
+    "/status":
+        post:
+            tags:
+                - statuses
+            consumes:
+                - application/json
+            parameters:
+                - in: body
+                  name: status
+                  schema:
+                    type: object                   
+            produces:
+                - application/json
+            responses:
+                200:
+                    description: "Success"
+                400:
+                    description: "Bad request"
+                500:
+                    description: "Internal Server Error"
