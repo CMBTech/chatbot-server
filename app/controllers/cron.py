@@ -85,9 +85,3 @@ def save2db(id, n_status):
         print("Sarri failed to update")
 
     print("Status successfuly updated!!!")
-    # return dict(
-    #         status="success",
-    #         message=f"Platform status updated successfully"
-    #         ), 200
-
-# get_data()
