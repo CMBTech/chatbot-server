@@ -1,0 +1,14 @@
+runtime: python37
+handlers:
+# The root URL (/) is handled by the WSGI application named
+# "app" in home.py. No other URLs match this pattern.
+entrypoint: gunicorn -b :$PORT server:app
+env_variables:
+  CLOUD_SQL_USERNAME: chatbot-db
+  CLOUD_SQL_PASSWORD: postgres
+  CLOUD_SQL_DATABASE_NAME: chatbot-db
+  CLOUD_SQL_CONNECTION_NAME: chatbot-db
+  FLASK_APP: server.py
+  FLASK_ENV: production
+  FLASK_RUN_PORT: 8081
+  DATABASE_URI: postgresql://dfndxkpazglnkcdf:<3TNiC(90|9Pnm!5x9ht|[y?CTNpaQ6z@102.134.147.233:32761/qogjifhbhglibossnqmtuivu

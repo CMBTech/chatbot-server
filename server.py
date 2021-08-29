@@ -68,7 +68,7 @@ def create_app(config_name):
     # call scheduler
     scheduler = APScheduler()
     scheduler.api_enabled = True
-    scheduler.add_job(id = 'Scheduled Task', func=scheduleTask, trigger="interval", seconds=20)
+    scheduler.add_job(id = 'Scheduled Task', func=scheduleTask, trigger="interval", hours=6)
     print(scheduler.get_job(id = 'Scheduled Task'))
     scheduler.init_app(app)
     scheduler.start()
@@ -77,7 +77,7 @@ def create_app(config_name):
 
 # create schuler function
 def scheduleTask():
-    print("This test runs every 180 seconds")
+    print("This test runs every 6 hrs")
     ooni_request.get_data()
     print("This test ends here ")
 

@@ -7,6 +7,6 @@ from datetime import datetime
 
 def get_data():
     # Get facebook status
-    r = requests.patch('http://127.0.0.1:5000/cron')
+    r = requests.patch('https://internetstatus-iens.ue.r.appspot.com/cron')
 
     return 0

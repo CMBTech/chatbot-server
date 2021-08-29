@@ -1,0 +1,26 @@
+FROM python:3.7-alpine
+
+WORKDIR /app
+
+RUN apk add musl-dev gcc libffi-dev g++
+
+RUN apk update && apk add postgresql-dev python3-dev musl-dev
+
+COPY requirements.txt /app/requirements.txt
+
+# define environment variables
+# ENV FLASK_APP server.py
+ENV FLASK_ENV production
+
+# install dependencies
+RUN pip install -r requirements.txt
+
+# copy current (local) directory contents into the container
+COPY . /app
+
+# make port available to the world outside this container
+# EXPOSE 5000
+
+# ENTRYPOINT ["gunicorn","server:app"]
+# ENTRYPOINT ["python","server.py"]
+CMD ["/app/scripts/start.sh"]
