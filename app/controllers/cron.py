@@ -54,9 +54,10 @@ def get_data():
 
 def save2db(id, n_status):
     print("Am in .... yeysssss!!!")
-    status_date = datetime.datetime.now().isoformat()
+    now = datetime.datetime.now()
     # print(now)
-    # status_date = now.strftime(" %d-%m-%Y %H:%M")
+    # status_date = now.strftime("%A-%B-%Y %H:%M")
+    status_date = now.strftime("%A %d %B %Y at %H:%M")
     # print("Here is the current date",status_date)
     print(status_date)
     data = dict(status=n_status, status_date=status_date)
@@ -84,4 +85,5 @@ def save2db(id, n_status):
     if not updated_platform:
         print("Sarri failed to update")
 
-    print("Status successfuly updated!!!")
+    if updated_platform:
+        print("Status successfuly updated!!!")

@@ -12,7 +12,7 @@ from app.helpers.create_categories import create_category
 from app.helpers.create_platforms import create_platform
 
 # register app and db with migration class
-migrate = Migrate(app, db)
+migrate = Migrate(app, db, compare_type=True)
 manager = Manager(app)
 
 manager.add_command('db', MigrateCommand)
