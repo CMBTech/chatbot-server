@@ -11,4 +11,5 @@ class CategorySchema(Schema):
                 regex=r'^(?!\s*$)', error='name should be a valid string'
             ),
         ])
+    menu_value = fields.Integer()
     

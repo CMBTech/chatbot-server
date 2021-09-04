@@ -7,3 +7,4 @@ class Category(ModelMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(256), nullable=True)
     plaforms = db.relationship('Platform', backref='category', lazy=True)
+    menu_value = db.Column(db.Integer, nullable=True)

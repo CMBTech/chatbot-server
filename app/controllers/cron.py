@@ -33,7 +33,9 @@ def get_data():
     print("..............................end.....................")
 
     # Get Twitter status
-    r2 = requests.get('https://api.ooni.io/api/v1/measurements?report_id=20210406T103932Z_webconnectivity_UG_36991_n1_B1JhJZjdOT2VihlG')
+    report_id = "20210406T103932Z_webconnectivity_UG_36991_n1_B1JhJZjdOT2VihlG"
+    url = f'https://api.ooni.io/api/v1/measurements?report_id={report_id}'
+    r2 = requests.get(url)
     
     # convert the response to a python object
     json_data2 = json.loads(r2.text)

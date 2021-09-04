@@ -15,3 +15,5 @@ class PlatformSchema(Schema):
     status_date = fields.String()
     category_id = fields.Integer()
     status = fields.Bool()
+    report_id = fields.String()
+    menu_value = fields.Integer()

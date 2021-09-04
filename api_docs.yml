@@ -18,6 +18,8 @@ paths:
                     properties:
                         name:
                             type: string
+                        menu_value:
+                            type: number
             produces:
                 - application/json
             responses:
@@ -65,7 +67,11 @@ paths:
                         url:
                             type: string
                         category_id:
-                            type: number                       
+                            type: number
+                        menu_value:
+                            type: number
+                        report_id:
+                            type: string                        
             produces:
                 - application/json
             responses:
