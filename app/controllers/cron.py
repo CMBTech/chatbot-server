@@ -26,24 +26,8 @@ class CronView(Resource):
             message=f" All Platforms updated successfully"
             ), 200
 
-def get_data(id,report_id):
-    # # Get facebook status
-    # r = requests.get('https://api.ooni.io/api/v1/measurements?report_id=20210407T180249Z_facebookmessenger_UG_20294_n1_x71fmhkRPLbIJLsA')
-    
-    # # convert the response to a python object
-    # json_data = json.loads(r.text)
-
-    # # retrieve the status. If its true it means the platform is inaccessible 
-    # print("..............................start.....................")
-    # print(json_data['results'][0]['anomaly']) 
-    # print(r.status_code)
-    # fb_status = json_data['results'][0]['anomaly']
-    # save2db(id,fb_status)
-    
-
-
-    # print("..............................end.....................")
-
+def get_data(id,report_id):  
+    print("..............................start retrieving status.....................")
     # Get platform status
     url = f'https://api.ooni.io/api/v1/measurements?report_id={report_id}'
     r2 = requests.get(url)
@@ -52,13 +36,11 @@ def get_data(id,report_id):
     json_data2 = json.loads(r2.text)
 
     # retrieve the status. If its true it means the platform is inaccessible 
-    print("..............................start.....................")
-    print(json_data2['results'][0]['anomaly'])
-    print(r2.status_code)
-    twt_status = json_data2['results'][0]['anomaly']
+    
+    platform_status = json_data2['results'][0]['anomaly']
 
-    save2db(id,twt_status)
-    print("..............................end.....................")
+    save2db(id,platform_status)
+    print("..............................end status update duty.....................")
 
     return 0
 
@@ -66,19 +48,13 @@ def get_data(id,report_id):
 
 
 def save2db(id, n_status):
-    print("Am in .... yeysssss!!!")
+    # Get current time
     now = datetime.datetime.now()
-    # print(now)
-    # status_date = now.strftime("%A-%B-%Y %H:%M")
     status_date = now.strftime("%A %d %B %Y at %H:%M")
-    # print("Here is the current date",status_date)
-    print(status_date)
     data = dict(status=n_status, status_date=status_date)
-    print(data)
 
     platform_schema = PlatformSchema()
     validated_platform_data, errors = platform_schema.load(data, partial=("name",))
-
 
     if errors:
         print(errors)
@@ -93,7 +69,6 @@ def save2db(id, n_status):
         platform.status_date = validated_platform_data['status_date']
     
     updated_platform = platform.save()
-    print(updated_platform)
 
     if not updated_platform:
         print("Sarri failed to update")
