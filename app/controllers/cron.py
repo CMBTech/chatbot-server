@@ -7,33 +7,44 @@ from flask_restful import Resource
 
 class CronView(Resource):
     def patch(self):
-        get_data()
+
+        platform_schema = PlatformSchema(many=True)
+        platforms = Platform.find_all()
+
+        platform_data, errors = platform_schema.dumps(platforms)
+
+        if errors:
+            return dict(status='fail', message=errors), 500
+
+        platform_data_list = json.loads(platform_data)
+        for platform in platform_data_list:
+            print(platform['report_id'])
+            get_data(platform['id'],platform['report_id'])
 
         return dict(
             status="success",
-            message=f"Platform updated successfully"
+            message=f" All Platforms updated successfully"
             ), 200
 
-def get_data():
-    # Get facebook status
-    r = requests.get('https://api.ooni.io/api/v1/measurements?report_id=20210407T180249Z_facebookmessenger_UG_20294_n1_x71fmhkRPLbIJLsA')
+def get_data(id,report_id):
+    # # Get facebook status
+    # r = requests.get('https://api.ooni.io/api/v1/measurements?report_id=20210407T180249Z_facebookmessenger_UG_20294_n1_x71fmhkRPLbIJLsA')
     
-    # convert the response to a python object
-    json_data = json.loads(r.text)
+    # # convert the response to a python object
+    # json_data = json.loads(r.text)
 
-    # retrieve the status. If its true it means the platform is inaccessible 
-    print("..............................start.....................")
-    print(json_data['results'][0]['anomaly']) 
-    print(r.status_code)
-    fb_status = json_data['results'][0]['anomaly']
-    save2db(2,fb_status)
+    # # retrieve the status. If its true it means the platform is inaccessible 
+    # print("..............................start.....................")
+    # print(json_data['results'][0]['anomaly']) 
+    # print(r.status_code)
+    # fb_status = json_data['results'][0]['anomaly']
+    # save2db(id,fb_status)
     
 
 
-    print("..............................end.....................")
+    # print("..............................end.....................")
 
-    # Get Twitter status
-    report_id = "20210406T103932Z_webconnectivity_UG_36991_n1_B1JhJZjdOT2VihlG"
+    # Get platform status
     url = f'https://api.ooni.io/api/v1/measurements?report_id={report_id}'
     r2 = requests.get(url)
     
@@ -46,7 +57,7 @@ def get_data():
     print(r2.status_code)
     twt_status = json_data2['results'][0]['anomaly']
 
-    save2db(1,twt_status)
+    save2db(id,twt_status)
     print("..............................end.....................")
 
     return 0

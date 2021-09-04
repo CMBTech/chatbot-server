@@ -15,6 +15,7 @@ paths:
                     type: object
                     required:
                         - name
+                        - menu_value
                     properties:
                         name:
                             type: string
@@ -60,7 +61,8 @@ paths:
                     required:
                         - name
                         - category_id
-                        - url
+                        - report_id
+                        - menu_value
                     properties:
                         name:
                             type: string
