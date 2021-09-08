@@ -60,3 +60,61 @@ class PlatformView(Resource):
             status='success',
             data=dict(platforms=json.loads(platform_data))
         ), 200
+
+
+    def patch(self, platform_id):
+        platform_schema = PlatformSchema(partial=True)
+
+        update_data = request.get_json()
+
+        validated_update_data, errors = platform_schema.load(update_data)
+
+        if errors:
+            return dict(status="fail", message=errors), 400
+
+        platform = Platform.get_by_id(platform_id)
+
+        if not platform:
+            return dict(
+                status="fail",
+                message=f"Platform with id {platform_id} not found"
+                ), 404
+
+
+        updated_platform = Platform.update(platform, **validated_update_data)
+
+        if not updated_platform:
+            return dict(status='fail', message='Internal Server Error'), 500
+
+        return dict(
+            status="success",
+            message=f"Platform {platform.name} updated successfully"
+            ), 200
+
+
+
+    def delete(self, platform_id):
+        """
+        """
+
+        try:
+            platform = Platform.get_by_id(platform_id)
+
+            if not platform:
+                return dict(
+                    status='fail',
+                    message=f'platform {platform_id} not found'
+                    ), 404
+
+            deleted = platform.delete()
+
+            if not deleted:
+                return dict(status='fail', message='deletion failed'), 500
+
+            return dict(
+                status='success',
+                message=f'platform {platform_id} deleted successfully'
+                ), 200
+
+        except Exception as e:
+            return dict(status='fail', message=str(e)), 500
