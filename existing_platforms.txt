@@ -1,0 +1,23 @@
+Menu_value     Platform   Category   Category_id  :  OONI_Report_id
+1              Twitter    Socials         1          
+2              Facebook   Socials         1 
+8              Signal     Socials         1 
+9              Whatsapp   Socials         1
+10             Telegram   Socials         1     
+11             NewVision  News sites      3
+12             Observer   News sites      3
+13             Psiphon    VPNs            2
+14             RiseUp     VPNs            2
+15             Tor        VPNs            2
+16             Unwanted   Civil           4
+               witness    society org
+
+
+Current MENU ITEMS
+Menu option       Status Item
+1.                 Twitter
+2.                 Facebook
+3.                 All Socials
+4.                 All VPNs
+5.                 New sites
+6.                 Civil society orgs

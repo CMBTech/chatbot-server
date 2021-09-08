@@ -44,21 +44,22 @@ class StatusView(Resource):
 
             return dict(fulfillmentMessages=final_list),200
 
-        elif choice == 3 or choice == 4:
+        elif choice == 3 or choice == 4 or choice == 5 or choice == 6:
             platform_schema = PlatformSchema(many=True)
             
-            if choice == 3:
-                category_id = 1 #socials category
-            else:
-                category_id = 2  #vpn category
-
-            category = Category.get_by_id(category_id)
+            category = Category.find_all(menu_value=choice)
             print("category is",category)
 
             if not category:
-                return dict(status='fail', message=f'category {category_id} not found'), 404
+                response_list = []
+                response_list.append("Sorry I didn't get that category. Try another on the menu. For Twitter say 1, For Facebook say 2, For all social platforms say 3, For all vpn checks say 4")
+
+                final_list = []
+                final_list.append(dict(text = dict(text=response_list)))
+
+                return dict(fulfillmentMessages=final_list),200
             
-            platforms = Platform.find_all(category_id=category_id)
+            platforms = Platform.find_all(category_id=category.id)
         
             platforms_data, errors = platform_schema.dumps(platforms)
             
