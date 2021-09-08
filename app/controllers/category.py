@@ -58,3 +58,60 @@ class CategoryView(Resource):
             status='success',
             data=dict(categories=json.loads(category_data))
         ), 200
+
+    def patch(self, category_id):
+        category_schema = CategorySchema(partial=True)
+
+        update_data = request.get_json()
+
+        validated_update_data, errors = category_schema.load(update_data)
+
+        if errors:
+            return dict(status="fail", message=errors), 400
+
+        category = Category.get_by_id(category_id)
+
+        if not category:
+            return dict(
+                status="fail",
+                message=f"Category with id {category_id} not found"
+                ), 404
+
+
+        updated_category = Category.update(category, **validated_update_data)
+
+        if not updated_category:
+            return dict(status='fail', message='Internal Server Error'), 500
+
+        return dict(
+            status="success",
+            message=f"Category {category.name} updated successfully"
+            ), 200
+
+
+
+    def delete(self, category_id):
+        """
+        """
+
+        try:
+            category = Category.get_by_id(category_id)
+
+            if not category:
+                return dict(
+                    status='fail',
+                    message=f'category {category_id} not found'
+                    ), 404
+
+            deleted = category.delete()
+
+            if not deleted:
+                return dict(status='fail', message='deletion failed'), 500
+
+            return dict(
+                status='success',
+                message=f'category {category_id} deleted successfully'
+                ), 200
+
+        except Exception as e:
+            return dict(status='fail', message=str(e)), 500

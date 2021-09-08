@@ -47,6 +47,63 @@ paths:
                     description: "Internal Server Error"
 
 
+        patch:
+            tags:
+                - categories
+            consumes:
+                - application/json
+            produces:
+                - application/json
+            parameters:
+                - in: path
+                  name: category_id
+                  required: true
+                  type: string
+                - in: body
+                  name: category_update
+                  schema:
+                    type: object
+                    properties:
+                        name:
+                            type: string
+                        menu_value:
+                            type: number
+                        
+            responses:
+                200:
+                    description: "Success"
+                404:
+                    description: "User not found"
+                400:
+                    description: "Bad request"
+                500:
+                    description: "Internal Server Error"
+
+        delete:
+            tags:
+                - categories
+            consumes:
+                - application/json
+            produces:
+                - application/json
+            parameters:
+                - in: path
+                  name: category_id
+                  required: true
+                  type: string
+
+            responses:
+                200:
+                    description: "Success"
+                404:
+                    description: "Category not found"
+                400:
+                    description: "Bad request"
+                500:
+                    description: "Internal Server Error"
+
+
+
     "/platforms":
         post:
             tags:
@@ -98,6 +155,71 @@ paths:
                     description: "Bad request"
                 500:
                     description: "Internal Server Error"
+
+
+        patch:
+            tags:
+                - platforms
+            consumes:
+                - application/json
+            produces:
+                - application/json
+            parameters:
+                - in: path
+                  name: platform_id
+                  required: true
+                  type: string
+
+                - in: body
+                  name: platform_update
+                  schema:
+                    type: object
+                    properties:
+                        name:
+                            type: string
+                        url:
+                            type: string
+                        category_id:
+                            type: number
+                        report_id:
+                            type: number
+                        menu_value:
+                            type: number
+                        
+            responses:
+                200:
+                    description: "Success"
+                404:
+                    description: "Platform not found"
+                400:
+                    description: "Bad request"
+                500:
+                    description: "Internal Server Error"
+
+        delete:
+            tags:
+                - platforms
+            consumes:
+                - application/json
+            produces:
+                - application/json
+            parameters:
+                - in: path
+                  name: platform_id
+                  required: true
+                  type: string
+
+            responses:
+                200:
+                    description: "Success"
+                404:
+                    description: "User not found"
+                400:
+                    description: "Bad request"
+                500:
+                    description: "Internal Server Error"
+
+
 
     "/cron":
         patch:
