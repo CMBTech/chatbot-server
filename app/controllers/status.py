@@ -89,6 +89,15 @@ class StatusView(Resource):
 
             return dict(
                 fulfillmentMessages=final_list),200
+        elif choice == 7:
+            tips_message = "Internet Disruption Circumvention Guidelines: Download and install a Virtual Private Network also known as VPN application on your device. Open the Play store incase you’re using Android or Appstore, if you’re using iPhone to download and install a VPN application. Additionally, you can also download apps using your browser. Open a new tab in your browser and visit the following websites to download the VPN mysterium.network/apps or https://www.getlantern.org/en_US/index.html Alternately, Download and install TOR browser on your device. Visit www.torproject.org/download/ Access the internet anonymously and securely using Orbot VPN. Download it via Play store or Appstore. Open your Playstore or Appstore to download and install Briar and Bridgefy ton your phone"
+            response_list = []
+            response_list.append(tips_message)
+
+            final_list = []
+            final_list.append(dict(text = dict(text=response_list)))
+
+            return dict(fulfillmentMessages=final_list),200
         else:
             response_list = []
             response_list.append("Sorry I didn't get that choice. Try another on the menu. For Facebook press 1, For Twitter press 2, For all social platforms press 3, For all vpn checks press 4")
