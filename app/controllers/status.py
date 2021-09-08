@@ -59,7 +59,7 @@ class StatusView(Resource):
 
                 return dict(fulfillmentMessages=final_list),200
             
-            platforms = Platform.find_all(category_id=category.id)
+            platforms = Platform.find_all(category_id=category[0].id)
         
             platforms_data, errors = platform_schema.dumps(platforms)
             
@@ -69,6 +69,7 @@ class StatusView(Resource):
 
             # construct response 
             response_list = []
+            date = ""
             platforms_data_list = json.loads(platforms_data)
             if not platforms_data_list:
                 response_list.append("No platforms yet in this category")
@@ -79,8 +80,10 @@ class StatusView(Resource):
                         message = " is currently blocked"
                     else:
                         message = " is up and running"
-                    response_list.append( platform['name']  + message + " as of "+ platform['status_date'])
-
+                    response_list.append( platform['name']  + message)
+                    date = platform['status_date']
+            
+            response_list.append(" as of "+ date)
             final_list = []
             final_list.append(dict(text = dict(text=response_list)))
 
