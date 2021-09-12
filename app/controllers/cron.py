@@ -7,6 +7,10 @@ from flask_restful import Resource
 
 class CronView(Resource):
     def patch(self):
+        """
+        This function helps us to query all existing platforms from the DB and ping the 
+        OONI API for the current status and thereafter updates their status in the database.
+        """
 
         platform_schema = PlatformSchema(many=True)
         platforms = Platform.find_all()
@@ -18,7 +22,6 @@ class CronView(Resource):
 
         platform_data_list = json.loads(platform_data)
         for platform in platform_data_list:
-            print(platform['report_id'])
             get_data(platform['id'],platform['report_id'])
 
         return dict(
@@ -48,6 +51,9 @@ def get_data(id,report_id):
 
 
 def save2db(id, n_status):
+    """
+    This function simply saves the new status of a plaform to the DB
+    """
     # Get current time
     now = datetime.datetime.now()
     status_date = now.strftime("%A %d %B %Y at %H:%M")

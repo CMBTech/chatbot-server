@@ -7,17 +7,15 @@ from app.models.platform import Platform
 class PlatformView(Resource):
     def post(self):
         """
+        Add a new platform to the database for internet status tracking
         """
 
         platform_schema = PlatformSchema()
 
         platform_data = request.get_json()
-        print(platform_data)
-
         validated_platform_data, errors = platform_schema.load(platform_data)
 
         platform_name = validated_platform_data.get('name', None)
-        print(platform_name)
 
         if errors:
             return dict(status="fail", message=errors), 400
@@ -45,11 +43,11 @@ class PlatformView(Resource):
 
     def get(self):
         """
+        Get existing platforms 
         """
         platform_schema = PlatformSchema(many=True)
 
         platforms = Platform.find_all()
-        print(platforms)
 
         platform_data, errors = platform_schema.dumps(platforms)
 
@@ -63,6 +61,9 @@ class PlatformView(Resource):
 
 
     def patch(self, platform_id):
+        """
+        Update an existing platform
+        """
         platform_schema = PlatformSchema(partial=True)
 
         update_data = request.get_json()
@@ -95,6 +96,7 @@ class PlatformView(Resource):
 
     def delete(self, platform_id):
         """
+        Delete a platform
         """
 
         try:

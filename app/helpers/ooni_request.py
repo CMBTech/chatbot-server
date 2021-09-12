@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 def get_data():
-    # Get facebook status
+    # Cron function to query endpoint that gets platform status
     r = requests.patch('https://internetstatus-iens.ue.r.appspot.com/cron')
 
     return 0

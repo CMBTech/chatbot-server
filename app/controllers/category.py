@@ -7,6 +7,7 @@ from app.models.category import Category
 class CategoryView(Resource):
     def post(self):
         """
+        add new categories
         """
 
         category_schema = CategorySchema()
@@ -43,11 +44,11 @@ class CategoryView(Resource):
 
     def get(self):
         """
+        Fetch categories
         """
         category_schema = CategorySchema(many=True)
 
         categories = Category.find_all()
-        print(categories)
 
         category_data, errors = category_schema.dumps(categories)
 
@@ -60,6 +61,9 @@ class CategoryView(Resource):
         ), 200
 
     def patch(self, category_id):
+        """
+        update a category
+        """
         category_schema = CategorySchema(partial=True)
 
         update_data = request.get_json()
@@ -92,6 +96,7 @@ class CategoryView(Resource):
 
     def delete(self, category_id):
         """
+        Delete a category
         """
 
         try:

@@ -9,13 +9,15 @@ from app.models.platform import Platform
 class StatusView(Resource):
     def post(self):
         """
+        This is the function that helps us to fetch the internet status of a platform 
+        or platforms in a specified category from the database.
         """
 
         google_data = request.get_json()
         if(google_data):
             choice = google_data['queryResult']['parameters']['number']
         else:
-            choice = 3 # mannually set the choice if not sent in request
+            choice = 3 # mannually set the choice if not sent in request for browser support
         
         
         if choice == 1 or choice == 2:
@@ -48,7 +50,6 @@ class StatusView(Resource):
             platform_schema = PlatformSchema(many=True)
             
             category = Category.find_all(menu_value=choice)
-            print("category is",category)
 
             if not category:
                 response_list = []
@@ -64,7 +65,6 @@ class StatusView(Resource):
             platforms_data, errors = platform_schema.dumps(platforms)
             
             if errors:
-                print(errors)
                 return dict(status='fail', message=errors), 500
 
             # construct response 
