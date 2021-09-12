@@ -1,5 +1,5 @@
 #  Internet Test Bot API
-This is an API for an internet test chatbot on dialogflow.
+This is an API for an internet test chatbot(NETDAN) on dialogflow.
 This project uses the following technologies: 
 
 1. `Flask`
@@ -11,6 +11,19 @@ This project uses the following technologies:
 
 Follow these steps to have a local running copy of the app.
 
+### 1. Fastest way to have a runnig local version of this project is:
+Pull and run an already built docker image of the same project. 
+First, you need to [setup docker on your local environment] (https://docs.docker.com/engine/install/)
+
+- If your all set, in that case, run `docker pull hmutegeki/chatbot:latest` to pull the image
+- Then check is your image was pulled successfully by running `docker list` to see all images 
+- If you see the image, now you can run it `docker run -p 5000:5000 hmutegeki/chatbot:latest`
+- Then navigate to your browser on `localhost:5000` api should display a success message
+- Navigate to api-docs to see the available endpoints `localhost:5000/apidocs`
+
+
+
+###### 2. The second method to setup the project is below:
 ##### Clone The Repo
 
 `git clone <url-to-repo>`
