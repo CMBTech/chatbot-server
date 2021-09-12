@@ -1,0 +1,31 @@
+Menu_value     Platform   Category   Category_id  :  OONI_Report_id
+1              Twitter    Socials         1         20210406T103932Z_webconnectivity_UG_36991_n1_B1JhJZjdOT2VihlG
+2              Facebook   Socials         1         20210407T180249Z_facebookmessenger_UG_20294_n1_x71fmhkRPLbIJLsA 
+8              Signal     Socials         1         20210419T022319Z_signal_UG_20294_n1_ch4e8o0EjWpLZOOa
+9              Whatsapp   Socials         1         20210419T022313Z_whatsapp_UG_20294_n1_3vrwtdDoNUeBdxoi
+10             Telegram   Socials         1         20210419T021210Z_webconnectivity_UG_20294_n1_E8PSMpANPdDx42iY
+11             NewVision  News sites      3         20210826T135515Z_webconnectivity_UG_36991_n1_OrNQicHk5Gz1Tdmj
+12             Observer   News sites      3         20210826T111854Z_webconnectivity_UG_36991_n1_AZmY2ue0ocV5QyDU
+13             Psiphon    VPNs            2         20210410T123229Z_psiphon_UG_20294_n1_3xFuCS6BSo8YyxU7
+14             RiseUp     VPNs            2         20210409T073302Z_riseupvpn_UG_37063_n1_Phxvb00nIrU5BM9D
+15             Tor        VPNs            2         20210409T073220Z_tor_UG_37063_n1_bUdasorpuIXMxCPK
+16             Unwanted   Civil           4         20210831T075442Z_webconnectivity_UG_36991_n1_ooRjQcHfou45JOMz
+               witness    society org
+17             CampusBEE  News sites      3         20210906T062827Z_webconnectivity_UG_36991_n1_aaECXISOT9XrQrjR
+18             Nilepost   News sites      3         20210823T053822Z_webconnectivity_UG_36991_n1_WznV2CIZcDFUhWUJ
+19             TIKTOK     Socials         1         20210826T083943Z_webconnectivity_UG_36991_n1_CkpfPzJBsUTtNuiC
+20             Instagram  Socials         1         20210820T123059Z_webconnectivity_UG_36991_n1_NPc62f38uBV0Ijmv
+21             Minority   Civil           4         20210812T083721Z_webconnectivity_UG_36991_n1_DUPaU38WiTbHAPoP
+               Rights     society org
+21             Amnesty    Civil society   4         20210902T060523Z_webconnectivity_UG_36991_n1_MKTAPner0oKaUdTJ
+
+
+
+Current MENU ITEMS
+Menu option       Status Item
+1.                 Twitter
+2.                 Facebook
+3.                 All Socials
+4.                 All VPNs
+5.                 New sites
+6.                 Civil society orgs
