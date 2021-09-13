@@ -63,6 +63,7 @@ Add the following details, customizing as needed.
 export FLASK_APP=server.py
 export FLASK_ENV=development
 export FLASK_RUN_PORT=5000
+export DATABASE_URI="Place the postgresqlURI for production db"
 ```
 ##### Run Database migrations
  
